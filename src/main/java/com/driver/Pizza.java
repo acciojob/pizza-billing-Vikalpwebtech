@@ -2,8 +2,7 @@ package com.driver;
 
 public class Pizza {
 
-    private int totalprice;
-    private Boolean isVeg;
+    private int price;
     private String bill;
     private int baseprice;
     private int cheeseprice;
@@ -11,15 +10,13 @@ public class Pizza {
     private int paperbagprice;
     private boolean ischeeseadded;
     private boolean istoppingadded;
-    private boolean ispaperbagadded;
+    private boolean istakeawayadded;
     private boolean isbillgenerated;
-    boolean istakeawayadded;
 
 
     public Pizza(Boolean isVeg){
-        this.isVeg = isVeg;
         //pizza is veg
-        if(isVeg == true){
+        if(isVeg){
             baseprice = 300;
             toppingprice =70;
         }
@@ -34,7 +31,7 @@ public class Pizza {
 //        istoppingadded = false;
 //        ispaperbagadded = false;
 //        isbillgenerated = false;
-        totalprice = baseprice;
+        price = baseprice;
     }
 
     public int getPrice(){
@@ -43,21 +40,21 @@ public class Pizza {
 
     public void addExtraCheese(){
         if(!ischeeseadded){
-            this.totalprice += cheeseprice;
+            this.price += cheeseprice;
             ischeeseadded = true;
         }
     }
 
     public void addExtraToppings(){
         if(!istoppingadded){
-            this.totalprice += toppingprice;
+            this.price += toppingprice;
             istoppingadded = true;
         }
     }
 
     public void addTakeaway(){
         if (!istakeawayadded) {
-            this.totalprice += paperbagprice;
+            this.price += paperbagprice;
             istakeawayadded = true;
         }
     }
@@ -76,7 +73,7 @@ public class Pizza {
                 this.bill = this.bill + "Paperbag Added: "+ paperbagprice +"\n";
             }
 
-            this.bill += "Total Price: " + totalprice + "\n";
+            this.bill += "Total Price: " + price + "\n";
             isbillgenerated = true;
         }
         return this.bill;
