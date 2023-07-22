@@ -8,8 +8,11 @@ public class Pizza {
     private int baseprice;
     private int cheeseprice;
     private int toppingprice;
+    private int paperbagprice;
     private boolean ischeeseadded;
     private boolean istoppingadded;
+    private boolean ispaperbagadded;
+    private boolean isbillgenerated;
 
 
     public Pizza(Boolean isVeg){
@@ -24,9 +27,14 @@ public class Pizza {
             toppingprice = 120;
         }
         cheeseprice = 80;
-        ischeeseadded = false;
-        istoppingadded = false;
+        paperbagprice = 20;
+        //Since by default value of boolean in java is false
+//        ischeeseadded = false;
+//        istoppingadded = false;
+//        ispaperbagadded = false;
+//        isbillgenerated = false;
         totalprice += baseprice;
+        bill = "Base Price Of The Pizza: "+baseprice+"\n";
     }
 
     public int getPrice(){
@@ -35,24 +43,34 @@ public class Pizza {
 
     public void addExtraCheese(){
         if(ischeeseadded == false){
-            bill = "Extra Cheese Added: "+cheeseprice+"\n";
+            bill = bill + "Extra Cheese Added: "+cheeseprice+"\n";
+            totalprice += cheeseprice;
+            ischeeseadded = true;
         }
-        ischeeseadded = true;
     }
 
     public void addExtraToppings(){
         if(istoppingadded == false){
-            bill = "Extra Toppings Added: "+ toppingprice+"\n";
+            bill = bill + "Extra Toppings Added: "+ toppingprice+"\n";
+            totalprice += toppingprice;
+            istoppingadded = true;
         }
-        istoppingadded = true;
     }
 
     public void addTakeaway(){
-        bill = "Paperbag Added: 20\n";
+        if (ispaperbagadded ==false) {
+            bill = bill + "Paperbag Added: "+ paperbagprice +"\n";
+            totalprice += paperbagprice;
+            ispaperbagadded = true;
+        }
     }
 
     public String getBill(){
         // your code goes here
+        if(!isbillgenerated) {
+            bill += "Total Price: " + totalprice + "\n";
+            isbillgenerated = true;
+        }
         return this.bill;
     }
 }
