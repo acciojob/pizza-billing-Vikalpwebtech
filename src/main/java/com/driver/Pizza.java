@@ -13,6 +13,7 @@ public class Pizza {
     private boolean istoppingadded;
     private boolean ispaperbagadded;
     private boolean isbillgenerated;
+    boolean istakeawayadded;
 
 
     public Pizza(Boolean isVeg){
@@ -33,8 +34,7 @@ public class Pizza {
 //        istoppingadded = false;
 //        ispaperbagadded = false;
 //        isbillgenerated = false;
-        totalprice += baseprice;
-        bill = "Base Price Of The Pizza: "+baseprice+"\n";
+        totalprice = baseprice;
     }
 
     public int getPrice(){
@@ -43,39 +43,40 @@ public class Pizza {
 
     public void addExtraCheese(){
         if(!ischeeseadded){
-            totalprice += cheeseprice;
+            this.totalprice += cheeseprice;
             ischeeseadded = true;
         }
     }
 
     public void addExtraToppings(){
         if(!istoppingadded){
-            totalprice += toppingprice;
+            this.totalprice += toppingprice;
             istoppingadded = true;
         }
     }
 
     public void addTakeaway(){
-        if (!ispaperbagadded) {
-            totalprice += paperbagprice;
-            ispaperbagadded = true;
+        if (!istakeawayadded) {
+            this.totalprice += paperbagprice;
+            istakeawayadded = true;
         }
     }
 
     public String getBill(){
         // your code goes here
         if(!isbillgenerated) {
+            this.bill = "Base Price Of The Pizza: "+baseprice+"\n";
             if(ischeeseadded){
-                bill = bill + "Extra Cheese Added: "+cheeseprice+"\n";
+                this.bill = this.bill + "Extra Cheese Added: "+cheeseprice+"\n";
             }
             if(istoppingadded){
-                bill = bill + "Extra Toppings Added: "+ toppingprice+"\n";
+                this.bill = this.bill + "Extra Toppings Added: "+ toppingprice+"\n";
             }
-            if (ispaperbagadded) {
-                bill = bill + "Paperbag Added: "+ paperbagprice +"\n";
+            if (istakeawayadded) {
+                this.bill = this.bill + "Paperbag Added: "+ paperbagprice +"\n";
             }
 
-            bill += "Total Price: " + totalprice + "\n";
+            this.bill += "Total Price: " + totalprice + "\n";
             isbillgenerated = true;
         }
         return this.bill;
